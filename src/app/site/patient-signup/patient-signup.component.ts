@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/services/user.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-patient-signup',
@@ -9,11 +12,17 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class PatientSignupComponent implements OnInit {
 
   patientRegisterForm:FormGroup;
-  constructor() { }
+  userNameTaken:boolean = false;
+  userNameEmpty:boolean = true;
+  submitStatus: boolean = false;
+  signupForm: FormGroup;
+  alreadyExist: boolean = false;
+  constructor(private userService:UserService,private authService:AuthService) { }
 
   ngOnInit() {
 
     this.patientRegisterForm=new FormGroup({
+      'username': new FormControl(null, [Validators.required,Validators.pattern('^[a-zA-Z0-9]+$'), Validators.maxLength(50)]),
       'firstname': new FormControl(null, [Validators.required,Validators.pattern('^[a-zA-Z0-9]+$'), Validators.maxLength(50)]),
       'lastname': new FormControl(null, [Validators.required,Validators.pattern('^[a-zA-Z0-9]+$'), Validators.maxLength(50)]),
       'age': new FormControl(null, [Validators.required,Validators.pattern('^[0-9]+$'), Validators.maxLength(2)]),
@@ -80,5 +89,48 @@ export class PatientSignupComponent implements OnInit {
   get zipcode(){
     return this.patientRegisterForm.get('zipcode');
   }
+
+  userTaken(){
+    let username = this.signupForm.get('username').value
+    if(username.length==0){
+      return;
+    }
+    this.userService.userAvailable(username).subscribe((data=>{
+      
+      if(username.length == 0){
+        this.userNameEmpty = true;
+      }
+      else{
+        this.userNameEmpty = false;
+      }
+      this.userNameTaken= data;  
+  
+    }))
+  }
+    onSignUp() {
+      this.submitStatus = true;
+      let user: User;
+  
+      user = {
+        username: this.signupForm.get('username').value,
+        firstname: this.signupForm.get('firstname').value,
+        lastname: this.signupForm.get('lastname').value,
+        password: this.signupForm.get('password').value,
+        contactNo:this.signupForm.get('contactNo').value,
+        role:"patient"
+
+      }
+      this.userService.authenticate(user).subscribe(null, (error) => {
+        this.alreadyExist = (error['error']['status'] == 400) ? true : false
+  
+        if (this.alreadyExist) {
+          this.submitStatus = false;
+          return;
+        }
+      })
+      this.authService.userAuthenticated.username = user.username;
+      this.signupForm.reset();
+  
+    }
 
 }

@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
             this.authService.userAuthenticated = { username: username, firstname: 'Angad', lastname: 'Verma', role: 'admin', accessToken: this.authService.accessToken,status:true,contactNo:"55545545",password:"pwd" }
         }
         else {
-            this.authService.userAuthenticated = { username: username, firstname: 'Chitransh', lastname: 'Customer', role: 'customer', accessToken: this.authService.accessToken }
+            this.authService.userAuthenticated = { username: username, firstname: 'Chitransh', lastname: 'Customer', role: 'user', accessToken: this.authService.accessToken,status:true,contactNo:"55545545",password:"pwd" }
         }
         this.router.navigate(['/menu']);
     },(error)=>{

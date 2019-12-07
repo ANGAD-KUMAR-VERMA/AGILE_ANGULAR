@@ -15,6 +15,7 @@ export class AgentSignupComponent implements OnInit {
   ngOnInit() {
 
     this.agentRegisterForm=new FormGroup({
+      'username': new FormControl(null, [Validators.required,Validators.pattern('^[a-zA-Z0-9]+$'), Validators.maxLength(50)]),
       'firstname': new FormControl(null, [Validators.required,Validators.pattern('^[a-zA-Z0-9]+$'), Validators.maxLength(50)]),
       'lastname': new FormControl(null, [Validators.required,Validators.pattern('^[a-zA-Z0-9]+$'), Validators.maxLength(50)]),
       'age': new FormControl(null, [Validators.required,Validators.pattern('^[0-9]+$'), Validators.maxLength(2)]),
@@ -37,6 +38,9 @@ export class AgentSignupComponent implements OnInit {
     console.log(this.agentRegisterForm.value['firstname']);
   }
 
+  get username(){
+    return this.agentRegisterForm.get('username');
+  }
   get firstname(){
     return this.agentRegisterForm.get('firstname');
   }

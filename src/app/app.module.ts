@@ -11,6 +11,7 @@ import { AdminSignupComponent } from './site/admin-signup/admin-signup.component
 import { PatientSignupComponent } from './site/patient-signup/patient-signup.component';
 import { AgentSignupComponent } from './site/agent-signup/agent-signup.component';
 import { DoctorSignupComponent } from './site/doctor-signup/doctor-signup.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { DoctorSignupComponent } from './site/doctor-signup/doctor-signup.compon
     AdminSignupComponent,
     PatientSignupComponent,
     AgentSignupComponent,
+    MenuComponent,
   
   ],
   imports: [

@@ -5,6 +5,6 @@ export interface User {
     username: string;
     contactNo:string;
     role: string;
-    status: boolean;
+    status?: boolean;
     accessToken?:string;
 }
