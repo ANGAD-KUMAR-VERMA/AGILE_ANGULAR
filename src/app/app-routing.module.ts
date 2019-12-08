@@ -6,18 +6,31 @@ import { PatientSignupComponent } from './site/patient-signup/patient-signup.com
 import { AgentSignupComponent } from './site/agent-signup/agent-signup.component';
 import { DoctorSignupComponent } from './site/doctor-signup/doctor-signup.component';
 import { MenuComponent } from './menu/menu.component';
+import { SignupOptionComponent } from './site/signup-option/signup-option.component';
+import { DoctorDetailsComponent } from './doctor/doctor-details/doctor-details.component';
+import { AuthGuardService } from './services/authGuard.service';
+import { AgentDetailsComponent } from './agent/agent-details/agent-details.component';
+import { AgentEditComponent } from './agent/agent-edit/agent-edit.component';
+import { PatientDetailsComponent } from './patient/patient-details/patient-details.component';
+import { DoctorEditComponent } from './doctor/doctor-edit/doctor-edit.component';
+import { PatientEditComponent } from './patient/patient-edit/patient-edit.component';
 
 
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
-  {path:'signup', component:AgentSignupComponent},
-  {path:'adminSignup', component:AdminSignupComponent},
-  {path:'patientSignup', component:PatientSignupComponent},
-  {path:'agentSignup', component:AgentSignupComponent},
-  {path:'doctorSignup', component:DoctorSignupComponent},
-  {path:'menu',component:MenuComponent}
-
+  {path:'signup', component:SignupOptionComponent},
+  {path:'signup/admin', component:AdminSignupComponent},
+  {path:'signup/patient', component:PatientSignupComponent},
+  {path:'signup/agent', component:AgentSignupComponent},
+  {path:'signup/doctor', component:DoctorSignupComponent},
+  {path:'menu',component:MenuComponent,canActivate:[AuthGuardService]},
+  { path: 'edit/agent/:id', component: AgentEditComponent, canActivate: [AuthGuardService] },
+  { path: 'edit/doctor/:id', component: DoctorEditComponent, canActivate: [AuthGuardService] },
+  { path: 'edit/patient/:id', component: PatientEditComponent, canActivate: [AuthGuardService] },
+ {path : 'doctors',component:DoctorDetailsComponent,canActivate: [AuthGuardService]},
+ {path : 'patients',component:PatientDetailsComponent,canActivate: [AuthGuardService]},
+ {path : 'agents',component:AgentDetailsComponent,canActivate: [AuthGuardService]}
 ];
 
 @NgModule({

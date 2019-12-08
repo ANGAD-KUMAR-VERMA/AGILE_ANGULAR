@@ -2,12 +2,11 @@
 <div class="row justify-content-center mt-5">
         <div class="col col-md-8 col-lg-8 col-sm-12">
             <div class="card">
-                <div class="card-header">Register</div>
+                <div class="card-header">Edit Agent</div>
                 <div class="card-body">
-                        <div class="alert alert-success" *ngIf="submitStatus">Sign up Successfull !!</div>
-                        <div class="alert alert-danger" *ngIf="alreadyExist">User Already Exist !!</div>
-                        <div *ngIf="submitStatus"><a routerLink="/login">Login</a></div>
-                    <form [formGroup]="agentRegisterForm" (submit)="onSignUpSubmit()" *ngIf="!submitStatus">
+                        <div class="alert alert-success" *ngIf="agentEdited else editAgent">Agent details edited successfully !!</div>        
+                        <ng-template #editAgent>   
+                    <form [formGroup]="agentEditForm" (submit)="onSubmitEditAgent()">
     
                         <div class="row">
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4">
@@ -160,19 +159,15 @@
                                         <span class="validation-error" *ngIf="zipcode.hasError('maxlength')">Zipcode cannot exceed 10 characters.</span>
                                         <span class="validation-error" *ngIf="zipcode.hasError('pattern')">ZipCode can only accept Numbers</span>
                                 </div>
-                            </div>
-    
-                 
-                            
-    
-                            
+                            </div>    
     
                         </div>
                         <div class="row">
-                                <input type="submit" class="btn btn-danger" value="Register" [disabled]="!agentRegisterForm.valid">
+                                <input type="submit" class="btn btn-danger" value="Save" [disabled]="!agentRegisterForm.valid">
                         </div>
     
                     </form>
+                </ng-template>
                 </div>
             </div>
         </div>

@@ -12,6 +12,16 @@ import { PatientSignupComponent } from './site/patient-signup/patient-signup.com
 import { AgentSignupComponent } from './site/agent-signup/agent-signup.component';
 import { DoctorSignupComponent } from './site/doctor-signup/doctor-signup.component';
 import { MenuComponent } from './menu/menu.component';
+import { SignupOptionComponent } from './site/signup-option/signup-option.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DoctorDetailsComponent } from './doctor/doctor-details/doctor-details.component';
+import { DoctorMenuComponent } from './doctor/doctor-menu/doctor-menu.component';
+import { MedicareSericeDetailsComponent } from './medicareService/medicare-serice-details/medicare-serice-details.component';
+import { AgentDetailsComponent } from './agent/agent-details/agent-details.component';
+import { AgentEditComponent } from './agent/agent-edit/agent-edit.component';
+import { DoctorEditComponent } from './doctor/doctor-edit/doctor-edit.component';
+import { PatientEditComponent } from './patient/patient-edit/patient-edit.component';
+import { PatientDetailsComponent } from './patient/patient-details/patient-details.component';
 
 
 @NgModule({
@@ -25,13 +35,23 @@ import { MenuComponent } from './menu/menu.component';
     PatientSignupComponent,
     AgentSignupComponent,
     MenuComponent,
+    SignupOptionComponent,
+    DoctorDetailsComponent,
+    DoctorMenuComponent,
+    MedicareSericeDetailsComponent,
+    AgentDetailsComponent,
+    AgentEditComponent,
+    DoctorEditComponent,
+    PatientEditComponent,
+    PatientDetailsComponent,
   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
 
   ],
   providers: [],

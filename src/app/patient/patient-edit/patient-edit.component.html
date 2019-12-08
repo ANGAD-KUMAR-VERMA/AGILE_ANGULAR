@@ -1,30 +1,30 @@
-
 <div class="row justify-content-center mt-5">
         <div class="col col-md-8 col-lg-8 col-sm-12">
             <div class="card">
                 <div class="card-header">Register</div>
                 <div class="card-body">
-                        <div class="alert alert-success" *ngIf="submitStatus">Sign up Successfull !!</div>
-                        <div class="alert alert-danger" *ngIf="alreadyExist">User Already Exist !!</div>
-                        <div *ngIf="submitStatus"><a routerLink="/login">Login</a></div>
-                    <form [formGroup]="agentRegisterForm" (submit)="onSignUpSubmit()" *ngIf="!submitStatus">
+
+                        <div class="alert alert-success" *ngIf="patientEdited else editPatient">Patient details edited successfully !!</div>        
+                        <ng-template #editPatient>
+                    <form [formGroup]="patientEditForm" (submit)="onSubmitEditForm()" *ngIf="!submitStatus">
+
     
                         <div class="row">
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4">
-                                <div class="form-group">
-                                    <label for="username">UserName</label>
-                                    <input type="text" name="username" formControlName="username" class="form-control">
-                                    <span class="validation-error" *ngIf="username.touched && username.hasError('required')">User name cannot be empty</span>
-                                    <span class="validation-error" *ngIf="username.hasError('maxlength')">User cannot exceed 50 characters.</span>
-                                    <span class="validation-error" *ngIf="username.hasError('pattern')">Special Characters are not allowed</span>
-                                </div>
-                            </div>
+                                        <div class="form-group">
+                                            <label for="firstname">UserName</label>
+                                            <input type="text" name="username" formControlName="username" class="form-control">
+                                            <span class="validation-error" *ngIf="username.touched && username.hasError('required')">User name cannot be empty</span>
+                                            <span class="validation-error" *ngIf="username.hasError('maxlength')">User cannot exceed 50 characters.</span>
+                                            <span class="validation-error" *ngIf="username.hasError('pattern')">Special Characters are not allowed</span>
+                                        </div>
+                                    </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4">
                                 <div class="form-group">
                                     <label for="firstname">First Name</label>
                                     <input type="text" name="firstname" formControlName="firstname" class="form-control">
                                     <span class="validation-error" *ngIf="firstname.touched && firstname.hasError('required')">First name cannot be empty</span>
-                                    <span class="validation-error" *ngIf="firstname.hasError('maxlength')">Lastname cannot exceed 50 characters.</span>
+                                    <span class="validation-error" *ngIf="firstname.hasError('maxlength')">First Name cannot exceed 50 characters.</span>
                                     <span class="validation-error" *ngIf="firstname.hasError('pattern')">Special Characters are not allowed</span>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@
     
                                 <div class="form-group">
                                     <label for="address2">Address 2</label>
-                                    <input type="textarea" class="form-control" name="address2" id="address2"
+                                    <input type="text" class="form-control" name="address2" id="address2"
                                         formControlname="address2">
                                         <span class="validation-error" *ngIf="address2.hasError('maxlength')">Address2 cannot exceed 100 characters.</span>
                                 </div>
@@ -169,10 +169,11 @@
     
                         </div>
                         <div class="row">
-                                <input type="submit" class="btn btn-danger" value="Register" [disabled]="!agentRegisterForm.valid">
+                                <input type="submit" class="btn btn-danger" value="Save" [disabled]="!patientRegisterForm.valid">
                         </div>
     
                     </form>
+                </ng-template>
                 </div>
             </div>
         </div>

@@ -20,10 +20,14 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit(form: NgForm) {
+
+    console.log("in login component ts");
     this.authSource = ''
     this.authService.authSource = '';
     const username = form.value.username;
+    console.log(username);
     const password = form.value.password;
+    console.log(password);
     if (username === 'Chitransh') {
       this.isLoginValid = false;
     } else {
@@ -32,10 +36,10 @@ export class LoginComponent implements OnInit {
         this.authService.isAdmin = data['role'] == 'ROLE_ADMIN' ? true : false;
         this.authService.loggedIn = true;
         if (this.authService.isAdmin) {
-            this.authService.userAuthenticated = { username: username, firstname: 'Angad', lastname: 'Verma', role: 'admin', accessToken: this.authService.accessToken,status:true,contactNo:"55545545",password:"pwd" }
+            this.authService.userAuthenticated = { username: username, firstname: 'Angad', lastname: 'Verma',  accessToken: this.authService.accessToken,status:true,password:"pwd" }
         }
         else {
-            this.authService.userAuthenticated = { username: username, firstname: 'Chitransh', lastname: 'Customer', role: 'user', accessToken: this.authService.accessToken,status:true,contactNo:"55545545",password:"pwd" }
+            this.authService.userAuthenticated = { username: username, firstname: 'Chitransh', lastname: 'Customer', accessToken: this.authService.accessToken,status:true,password:"pwd" }
         }
         this.router.navigate(['/menu']);
     },(error)=>{

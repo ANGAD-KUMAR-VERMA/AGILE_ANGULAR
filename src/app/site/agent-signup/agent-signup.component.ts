@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
+
+import { User } from 'src/app/services/user.model';
+import { Agent } from 'src/app/model/agent.model';
+
 
 @Component({
   selector: 'app-agent-signup',
@@ -10,7 +16,12 @@ export class AgentSignupComponent implements OnInit {
 
 
   agentRegisterForm:FormGroup;
-  constructor() { }
+  userNameTaken:boolean = false;
+  userNameEmpty:boolean = true;
+  submitStatus: boolean = false;
+  signupForm: FormGroup;
+  alreadyExist: boolean = false;
+  constructor(private userService:UserService,private authService:AuthService) { }
 
   ngOnInit() {
 
@@ -21,8 +32,8 @@ export class AgentSignupComponent implements OnInit {
       'age': new FormControl(null, [Validators.required,Validators.pattern('^[0-9]+$'), Validators.maxLength(2)]),
       'gender': new FormControl(null, [Validators.required, Validators.maxLength(10)]),
       'dateOfBirth': new FormControl(null, [Validators.required]),
-      'contactNo': new FormControl(null,[Validators.required, Validators.pattern('^[0-9]+$'), Validators.maxLength(10)]),
-      'altContactNo': new FormControl(null, [Validators.pattern('^[0-9]+$'),Validators.maxLength(10)]),
+      'contactNo': new FormControl(null,[Validators.required, Validators.pattern('^[0-9]+$'), Validators.maxLength(10),Validators.minLength(10)]),
+      'altContactNo': new FormControl(null, [Validators.pattern('^[0-9]+$'),Validators.maxLength(10),Validators.minLength(10)]),
       'email': new FormControl(null, [Validators.required,Validators.email,Validators.maxLength(50)]),
       'password': new FormControl(null, [Validators.required,Validators.maxLength(15)]),
       'address1': new FormControl(null, [Validators.required,Validators.maxLength(100)]),
@@ -36,6 +47,66 @@ export class AgentSignupComponent implements OnInit {
   onSignUpSubmit(){
     console.log("helllo signup");
     console.log(this.agentRegisterForm.value['firstname']);
+
+    this.submitStatus = true;
+  let agent:Agent;
+  let user:User;
+
+  user={
+    username: this.agentRegisterForm.get('username').value,
+    firstname: this.agentRegisterForm.get('firstname').value,
+    lastname: this.agentRegisterForm.get('lastname').value,
+    password: this.agentRegisterForm.get('password').value,
+    agent:{
+      username: this.agentRegisterForm.get('username').value,
+      firstname: this.agentRegisterForm.get('firstname').value,
+      lastname: this.agentRegisterForm.get('lastname').value,
+      age:this.agentRegisterForm.get('age').value,
+      gender:this.agentRegisterForm.get('gender').value,
+      dateOfBirth:this.agentRegisterForm.get('dateOfBirth').value,
+      contactNo:this.agentRegisterForm.get('contactNo').value,
+      altContactNo:this.agentRegisterForm.get('altContactNo').value,
+      email:this.agentRegisterForm.get('email').value,
+      password: this.agentRegisterForm.get('password').value,
+      address1:this.agentRegisterForm.get('address1').value,
+      address2:this.agentRegisterForm.get('address2').value,
+      city:this.agentRegisterForm.get('city').value,
+      state:this.agentRegisterForm.get('state').value,
+      zipcode:this.agentRegisterForm.get('zipcode').value
+  
+    }  
+  }
+  console.log(user);
+
+  
+  this.userService.authenticate(user).subscribe(null, (error) => {
+    this.alreadyExist = (error['error']['status'] == 400) ? true : false
+
+    if (this.alreadyExist) {
+      this.submitStatus = false;
+      return;
+    }
+  })
+  this.authService.userAuthenticated.username = user.username;
+  this.agentRegisterForm.reset();
+  }
+
+  userTaken(){
+    let username = this.signupForm.get('username').value
+    if(username.length==0){
+      return;
+    }
+    this.userService.userAvailable(username).subscribe((data=>{
+      
+      if(username.length == 0){
+        this.userNameEmpty = true;
+      }
+      else{
+        this.userNameEmpty = false;
+      }
+      this.userNameTaken= data;  
+  
+    }))
   }
 
   get username(){

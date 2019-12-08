@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/services/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { Patient } from 'src/app/model/patient.model';
 
 @Component({
   selector: 'app-patient-signup',
@@ -28,8 +29,8 @@ export class PatientSignupComponent implements OnInit {
       'age': new FormControl(null, [Validators.required,Validators.pattern('^[0-9]+$'), Validators.maxLength(2)]),
       'gender': new FormControl(null, [Validators.required, Validators.maxLength(10)]),
       'dateOfBirth': new FormControl(null, [Validators.required]),
-      'contactNo': new FormControl(null,[Validators.required, Validators.pattern('^[0-9]+$'), Validators.maxLength(10)]),
-      'altContactNo': new FormControl(null, [Validators.pattern('^[0-9]+$'),Validators.maxLength(10)]),
+      'contactNo': new FormControl(null,[Validators.required, Validators.pattern('^[0-9]+$'), Validators.maxLength(10),Validators.minLength(10)]),
+      'altContactNo': new FormControl(null, [Validators.pattern('^[0-9]+$'),Validators.maxLength(10),Validators.minLength(10)]),
       'email': new FormControl(null, [Validators.required,Validators.email,Validators.maxLength(50)]),
       'password': new FormControl(null, [Validators.required,Validators.maxLength(15)]),
       'address1': new FormControl(null, [Validators.required,Validators.maxLength(100)]),
@@ -43,6 +44,71 @@ export class PatientSignupComponent implements OnInit {
   onSignUpSubmit(){
     console.log("helllo signup");
     console.log(this.patientRegisterForm.value['firstname']);
+
+    this.submitStatus = true;
+    let patient:Patient;
+    let user:User;
+  
+    user={
+      username: this.patientRegisterForm.get('username').value,
+      firstname: this.patientRegisterForm.get('firstname').value,
+      lastname: this.patientRegisterForm.get('lastname').value,
+      password: this.patientRegisterForm.get('password').value,
+      patient:{
+        username: this.patientRegisterForm.get('username').value,
+        firstname: this.patientRegisterForm.get('firstname').value,
+        lastname: this.patientRegisterForm.get('lastname').value,
+        age:this.patientRegisterForm.get('age').value,
+        gender:this.patientRegisterForm.get('gender').value,
+        dateOfBirth:this.patientRegisterForm.get('dateOfBirth').value,
+        contactNo:this.patientRegisterForm.get('contactNo').value,
+        altContactNo:this.patientRegisterForm.get('altContactNo').value,
+        email:this.patientRegisterForm.get('email').value,
+        password: this.patientRegisterForm.get('password').value,
+        address1:this.patientRegisterForm.get('address1').value,
+        address2:this.patientRegisterForm.get('address2').value,
+        city:this.patientRegisterForm.get('city').value,
+        state:this.patientRegisterForm.get('state').value,
+        zipcode:this.patientRegisterForm.get('zipcode').value
+    
+      }  
+    }
+    console.log(user);
+  
+    
+    this.userService.authenticate(user).subscribe(null, (error) => {
+      this.alreadyExist = (error['error']['status'] == 400) ? true : false
+  
+      if (this.alreadyExist) {
+        this.submitStatus = false;
+        return;
+      }
+    })
+    this.authService.userAuthenticated.username = user.username;
+    this.patientRegisterForm.reset();
+    }
+  
+    userTaken(){
+      let username = this.signupForm.get('username').value
+      if(username.length==0){
+        return;
+      }
+      this.userService.userAvailable(username).subscribe((data=>{
+        
+        if(username.length == 0){
+          this.userNameEmpty = true;
+        }
+        else{
+          this.userNameEmpty = false;
+        }
+        this.userNameTaken= data;  
+    
+      }))
+    }
+  
+
+  get username(){
+    return this.patientRegisterForm.get('username');
   }
 
   get firstname(){
@@ -89,48 +155,5 @@ export class PatientSignupComponent implements OnInit {
   get zipcode(){
     return this.patientRegisterForm.get('zipcode');
   }
-
-  userTaken(){
-    let username = this.signupForm.get('username').value
-    if(username.length==0){
-      return;
-    }
-    this.userService.userAvailable(username).subscribe((data=>{
-      
-      if(username.length == 0){
-        this.userNameEmpty = true;
-      }
-      else{
-        this.userNameEmpty = false;
-      }
-      this.userNameTaken= data;  
-  
-    }))
-  }
-    onSignUp() {
-      this.submitStatus = true;
-      let user: User;
-  
-      user = {
-        username: this.signupForm.get('username').value,
-        firstname: this.signupForm.get('firstname').value,
-        lastname: this.signupForm.get('lastname').value,
-        password: this.signupForm.get('password').value,
-        contactNo:this.signupForm.get('contactNo').value,
-        role:"patient"
-
-      }
-      this.userService.authenticate(user).subscribe(null, (error) => {
-        this.alreadyExist = (error['error']['status'] == 400) ? true : false
-  
-        if (this.alreadyExist) {
-          this.submitStatus = false;
-          return;
-        }
-      })
-      this.authService.userAuthenticated.username = user.username;
-      this.signupForm.reset();
-  
-    }
 
 }

@@ -1,0 +1,34 @@
+
+<table class="table table-bordered" border="0" width="90%" cellspacing="2" cellpadding="8" align="center">
+        <tbody>
+        <tr>
+        <th class="title" style="text-align: left; width: 98%;" colspan="5" align="center">Patients</th>
+        </tr>
+        <tr>
+        <th class="title" style="text-align: left; width: 14.9142%;">Name</th>
+        <th class="title" style="text-align: left; width: 12.0858%;">Age</th>
+        <th class="title" style="text-align: left; width: 9%;">Date Of Birth</th>
+        <th class="title" style="text-align: left; width: 26%;">Contact No. / E-mail</th>
+        <th class="title" style="text-align: left; width: 26%;">Address</th>
+        <th class="title" style="text-align: left; width: 10%;">Edit</th>
+        </tr>
+        <tr *ngFor="let patient of patients">
+        <td style="text-align: left; width: 14.9142%;"><img src="https://previews.123rf.com/images/tuktukdesign/tuktukdesign1704/tuktukdesign170400032/76258396-female-doctor-icon-physician-person-with-stethoscope-and-cross-profile-avatar-in-glyph-pictogram-vec.jpg" width="100" height="100" /><br /> {{patient.firstname}} {{patient.lastname}}</td>
+        <td style="text-align: left; width: 12.0858%;">{{patient.age}}</td>
+        <td style="text-align: left; width: 9%;">
+        <p>{{patient.dateOfBirth}}</p>
+        </td>
+        <td style="text-align: left; width: 26%;">
+        <p>{{patient.contactNo}}</p>
+        <p>{{patient.altContactNo}}</p>
+        <p>{{patient.email}}</p>
+        </td>
+        <td style="text-align: left; width: 36%;"><p>{{patient.address1}}</p>
+        <p>{{patient.address2}}</p>
+        <p>{{patient.city}}</p>
+        <p>{{patient.state}}</p>
+         {{patient.zipcode}} </td>
+         <td><a [routerLink]="['/edit/patient',patient.id]" class="text_red">Edit</a></td>
+        </tr>
+     </tbody>
+     </table>

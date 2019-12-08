@@ -1,0 +1,17 @@
+export interface Patient{
+    username:string;
+    firstname:string;
+    lastname:string;
+    password:string;
+    age:string;
+    gender:boolean;
+    dateOfBirth:Date;
+    contactNo:string;
+    altContactNo:string;
+    email:string;
+    address1:string;
+    address2:string;
+    city:string;
+    state:string;
+    zipcode:string;
+}
