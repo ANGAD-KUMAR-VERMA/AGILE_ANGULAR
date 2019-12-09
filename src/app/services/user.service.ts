@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Input, OnInit } from "@angular/core";
 import { Observable, Observer } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from './user.model';
@@ -7,7 +7,11 @@ import { User } from './user.model';
     providedIn: 'root'
 })
 
-export class UserService {
+export class UserService  {
+
+    @Input()
+    user:User[];
+    isUserAuthenticated:boolean=false;
 
     constructor(private http:HttpClient) {
     }
@@ -18,5 +22,10 @@ export class UserService {
     userAvailable(username:string):Observable<boolean> {
         return this.http.get<boolean>(`http://localhost:8080/users/${username}`)
     }
+
+   
+   
+
+ 
 }
 

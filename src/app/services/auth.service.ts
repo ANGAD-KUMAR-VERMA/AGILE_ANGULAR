@@ -27,6 +27,10 @@ export class AuthService {
         return this.httpService.get("http://localhost:8080/authenticate", { headers: header })
     }
 
+    getUser(username:string):Observable<any>{
+        return this.httpService.get<User>(`http://localhost:8080/users/get/${username}`)
+    }
+
 
     logOut() {
         this.redirectUrl = '/';

@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   isLoginValid = true;
   authSource: string;
+  isUserAuthenticated:boolean=true;
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit() {
@@ -31,6 +32,13 @@ export class LoginComponent implements OnInit {
     if (username === 'Chitransh') {
       this.isLoginValid = false;
     } else {
+    
+       this.authService.getUser(username).subscribe((data)=>{
+             this.isUserAuthenticated=data['status']
+             console.log("Is user Authenticated "+this.isUserAuthenticated);
+       })
+
+
       this.authService.logIn(username, password).subscribe((data) => {
         this.authService.accessToken = data['token'];
         this.authService.isAdmin = data['role'] == 'ROLE_ADMIN' ? true : false;
