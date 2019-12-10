@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
 
   isLoginValid = true;
+  role:string;
   authSource: string;
   isUserAuthenticated:boolean=true;
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
@@ -32,16 +33,15 @@ export class LoginComponent implements OnInit {
     if (username === 'Chitransh') {
       this.isLoginValid = false;
     } else {
-    
-       this.authService.getUser(username).subscribe((data)=>{
-             this.isUserAuthenticated=data['status']
-             console.log("Is user Authenticated "+this.isUserAuthenticated);
-       })
 
 
       this.authService.logIn(username, password).subscribe((data) => {
         this.authService.accessToken = data['token'];
+        this.role=data['role'];
+        console.log("ROle "+this.role);
         this.authService.isAdmin = data['role'] == 'ROLE_ADMIN' ? true : false;
+        this.authService.isDoctor = data['role'] == 'ROLE_DOCTOR' ? true : false;
+        this.authService.isAgent = data['role'] == 'ROLE_AGENT' ? true : false;
         this.authService.loggedIn = true;
         if (this.authService.isAdmin) {
             this.authService.userAuthenticated = { username: username, firstname: 'Angad', lastname: 'Verma',  accessToken: this.authService.accessToken,status:true,password:"pwd" }
@@ -52,7 +52,23 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/menu']);
     },(error)=>{
       this.isLoginValid = (error['status'] == 401) ? false : true;
+      
     });
     }
+
+    if(this.isLoginValid){
+
+      this.authService.getUser(username).subscribe((data)=>{
+        this.isUserAuthenticated=data['status']
+        if(!this.isUserAuthenticated){
+          this.isLoginValid=true;
+        }
+        console.log("Is user Authenticated "+this.isUserAuthenticated);
+         })
+    }
+  }
+  setUserAuthenticated(){
+    this.isUserAuthenticated=true;
+    this.isLoginValid=true;
   }
 }

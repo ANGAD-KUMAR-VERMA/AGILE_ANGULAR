@@ -11,6 +11,8 @@ import { User } from './user.model';
 export class AuthService {
     loggedIn = false;
     isAdmin = false;
+    isAgent=false;
+    isDoctor=false;
     redirectUrl: string = '/';
     userAuthenticated: User;
     authSource: string = '';
@@ -25,6 +27,7 @@ export class AuthService {
         header = header.set('Authorization', 'Basic ' + btoa(username + ':' + password));
 
         return this.httpService.get("http://localhost:8080/authenticate", { headers: header })
+        this.loggedIn=true;
     }
 
     getUser(username:string):Observable<any>{

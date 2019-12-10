@@ -10,7 +10,7 @@
 
           <div class="form-group">
             <label for="username">Username </label>
-              <input type="text" class="form-control" name="username" placeholder="Enter Username"ngModel required #username="ngModel">
+              <input type="text" class="form-control" name="username" (click)="setUserAuthenticated()" placeholder="Enter Username"ngModel required #username="ngModel">
               <span class="validation-error" *ngIf="username.touched &&  !username.valid">Username is required</span>
            
           </div>

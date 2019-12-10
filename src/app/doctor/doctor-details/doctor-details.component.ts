@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Doctor } from 'src/app/model/doctor.model';
 import { DoctorService } from 'src/app/doctor/doctor.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-doctor-details',
@@ -13,7 +14,7 @@ export class DoctorDetailsComponent implements OnInit {
   doctors:Doctor[];
   tempDoctor:Doctor[];
   isMale:boolean;
-  constructor(private doctorService:DoctorService) { }
+  constructor(private doctorService:DoctorService,private authService:AuthService) { }
 
   ngOnInit() {
 
@@ -23,6 +24,10 @@ export class DoctorDetailsComponent implements OnInit {
       console.log(this.doctors);
 
   })
+  }
+
+  isEditable(){
+    return this.authService.isAdmin
   }
 
 }

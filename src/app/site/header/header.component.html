@@ -7,27 +7,30 @@
     <div class="collapse navbar-collapse dcircle" id="navcontent">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a routerLink="doctors" class="nav-link">Doctors</a>
+                <a routerLink="doctors" class="nav-link"  *ngIf="isLoggedIn()">Doctors</a>
             </li>
             <li class="nav-item">
-                <a routerLink="patients" class="nav-link">Patients</a>
+                <a routerLink="patients" class="nav-link"  *ngIf="isLoggedIn()">Patients</a>
             </li>
             <li class="nav-item">
-                <a routerLink="agents" class="nav-link">Agents</a>
+                <a routerLink="agents" class="nav-link"  *ngIf="isLoggedIn()">Agents</a>
             </li>
             <li class="nav-item">
-                    <a routerLink="login" class="nav-link">Log In</a>
+                <a routerLink="services" class="nav-link" >Medicare Services</a>
+            </li>
+            <li class="nav-item">
+                    <a routerLink="login" class="nav-link" *ngIf="!isLoggedIn()">Log In</a>
                 </li>
             <li class="nav-item">
-                <a routerLink="signup" class="nav-link">Sign Up</a>
+                <a routerLink="signup" class="nav-link" *ngIf="!isLoggedIn()">Sign Up</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link"><i class="material-icons">person</i>
+                <a class="nav-link" *ngIf="isLoggedIn()"><i class="material-icons">person</i>
 
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" (click)="onSignOut()" class="nav-link">Log Out</a>
+                <a href="#" (click)="onSignOut()" class="nav-link" *ngIf="isLoggedIn()">Log Out</a>
             </li>
         </ul>
     </div>
