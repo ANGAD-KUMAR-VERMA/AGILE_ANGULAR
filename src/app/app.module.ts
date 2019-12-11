@@ -23,6 +23,8 @@ import { DoctorEditComponent } from './doctor/doctor-edit/doctor-edit.component'
 import { PatientEditComponent } from './patient/patient-edit/patient-edit.component';
 import { PatientDetailsComponent } from './patient/patient-details/patient-details.component';
 import { NotFoundComponent } from './site/not-found/not-found.component';
+import { SignupComponent } from './site/signup/signup.component';
+import { AppointmentComponent } from './appointment/appointment.component';
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import { NotFoundComponent } from './site/not-found/not-found.component';
     PatientEditComponent,
     PatientDetailsComponent,
     NotFoundComponent,
+    SignupComponent,
+    AppointmentComponent,
   
   ],
   imports: [

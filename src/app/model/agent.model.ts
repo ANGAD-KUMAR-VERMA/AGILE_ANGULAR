@@ -5,7 +5,7 @@ export interface Agent{
     lastname:string;
     password:string;
     age:string;
-    gender:boolean;
+    gender:String;
     dateOfBirth:Date;
     contactNo:string;
     altContactNo:string;
@@ -15,4 +15,5 @@ export interface Agent{
     city:string;
     state:string;
     zipcode:string;
+    status?:boolean;
 }

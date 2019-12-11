@@ -54,7 +54,7 @@ export class AgentEditComponent implements OnInit {
             firstname:agent.firstname,
             lastname:agent.lastname,
             age:agent.age,
-            gender:agent.gender,
+            gender:agent.gender==="male"?true:false,
             dateOfBirth: agent.dateOfBirth.toISOString().slice(0, 10),
             contactNo:agent.contactNo,
             altContactNo:agent.altContactNo,

@@ -44,10 +44,10 @@ export class LoginComponent implements OnInit {
         this.authService.isAgent = data['role'] == 'ROLE_AGENT' ? true : false;
         this.authService.loggedIn = true;
         if (this.authService.isAdmin) {
-            this.authService.userAuthenticated = { username: username, firstname: 'Angad', lastname: 'Verma',  accessToken: this.authService.accessToken,status:true,password:"pwd" }
+            this.authService.userAuthenticated = { username: username,  accessToken: this.authService.accessToken,status:true,password:"pwd" }
         }
         else {
-            this.authService.userAuthenticated = { username: username, firstname: 'Chitransh', lastname: 'Customer', accessToken: this.authService.accessToken,status:true,password:"pwd" }
+            this.authService.userAuthenticated = { username: username, accessToken: this.authService.accessToken,status:true,password:"pwd" }
         }
         this.router.navigate(['/menu']);
     },(error)=>{

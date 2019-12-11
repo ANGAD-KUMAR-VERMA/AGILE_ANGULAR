@@ -52,7 +52,7 @@ export class PatientEditComponent implements OnInit {
             firstname:patient.firstname,
             lastname:patient.lastname,
             age:patient.age,
-            gender:patient.gender,
+            gender:patient.gender==="male"?true:false,
             dateOfBirth: patient.dateOfBirth.toISOString().slice(0, 10),
             contactNo:patient.contactNo,
             altContactNo:patient.altContactNo,

@@ -52,11 +52,11 @@
                                 <label for="gender">Gender</label>
                                 <div>
                                 
-                                        <input type="radio" class="radio-inline radio" id="gender" name="gender" [value]=true
-                                          formControlName="gender">Male
-                                        <input type="radio" class="radio-inline radio" id="gender" name="gender" [value]=false
-                                          formControlName="gender">Female
-                                        </div> 
+                                    <input type="radio" class="radio-inline radio" id="gender" name="gender" [value]="true"
+                                    formControlName="gender">Male
+                                  <input type="radio" class="radio-inline radio" id="gender" name="gender" [value]="false"
+                                    formControlName="gender">Female
+                                    </div>
                                 <span class="validation-error" *ngIf="gender.touched && gender.hasError('required')">Gender  cannot be empty</span>
                             </div>
     
