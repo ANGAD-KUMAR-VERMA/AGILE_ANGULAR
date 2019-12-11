@@ -91,7 +91,7 @@ export class AgentSignupComponent implements OnInit {
   }
 
   userTaken(){
-    let username = this.signupForm.get('username').value
+    let username = this.agentRegisterForm.get('username').value
     if(username.length==0){
       return;
     }

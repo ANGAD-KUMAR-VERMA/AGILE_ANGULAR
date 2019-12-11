@@ -16,7 +16,10 @@ export class PatientDetailsComponent implements OnInit {
   @Input()
   patients:Patient[];
   tempPatients:Patient[];
-  user:User={};
+  showDetails:boolean=false;
+  user:User={
+    
+  };
   approveStatus:boolean=false;
   isApproved=false;
  
@@ -106,6 +109,10 @@ export class PatientDetailsComponent implements OnInit {
 
   onSearchText(event: any) {
     this.patientService.filter.next({ title: event.target.value });
+  }
+
+  allDetails(){
+    return this.showDetails=!this.showDetails;
   }
 
 }

@@ -22,5 +22,9 @@ export class HeaderComponent implements OnInit {
     return this.authService.loggedIn
   }
 
+  getUser(){
+   return this.authService.username;
+  }
+
 
 }

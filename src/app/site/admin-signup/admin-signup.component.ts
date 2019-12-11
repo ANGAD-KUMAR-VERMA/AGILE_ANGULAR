@@ -117,7 +117,7 @@ get password(){
 }
 
 userTaken(){
-  let username = this.signupForm.get('username').value
+  let username = this.adminRegisterForm.get('username').value
   if(username.length==0){
     return;
   }

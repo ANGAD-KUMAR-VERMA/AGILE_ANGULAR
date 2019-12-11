@@ -7,7 +7,14 @@
   .card {
     background-color: rgba(30, 121, 224, 0.2);
   }
-  
+  .navbar-brand{
+    font-size: 40px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+  }
+ 
+  .validation-success{
+    color: green;
+  }
    
   .validation-error{
     color:red;

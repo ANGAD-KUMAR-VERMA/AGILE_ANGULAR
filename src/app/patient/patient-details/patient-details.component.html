@@ -1,49 +1,171 @@
-<div class="jumbotron">
-      <h1 class="display-4 text-white">Find Food</h1>
-      <div class="input-group">
-          <div class="input-group-prepend">
-              <span class="input-group-text"><i class="material-icons">local_hospital</i></span>
-          </div>
-          <input type="text" class="form-control" placeholder="Search Patient" >
-      </div>
-  </div>
+<div class="container mt-5">
+    <div class="row justigy-content-center">
+        <div class="col-4"></div>
+        <div class="col-4 title text-center">Patient List</div>
+        <div class="col-4"></div>
+    </div>  
+</div>
 
 
-<table  class="table table-bordered" border="2" width="90%" cellspacing="2" cellpadding="8" align="center" >
-        <tbody>
-        <tr>
-        <th class="title" style="text-align: left; width: 98%;" colspan="5" align="center">Patients</th>
-        </tr>
-        <tr>
-        <th class="title" style="text-align: left; width: 14.9142%;">Name</th>
-        <th class="title" style="text-align: left; width: 12.0858%;">Age</th>
-        <th class="title" style="text-align: left; width: 9%;">Date Of Birth</th>
-        <th class="title" style="text-align: center; width: 26%;">Contact No. / E-mail</th>
-        <th class="title" style="text-align: center; width: 26%;">Address</th>
-        <th class="title" style="text-align: left; width: 5%;">Edit</th>
-        <th class="title" style="text-align: left; width: 5%;">Approve</th>
-        <th class="title" style="text-align: left; width: 5%;">DisApprove</th>
-        </tr>
-        <tr *ngFor="let patient of patients">
-        <td style="text-align: left; width: 14.9142%;"><img src="https://cdn2.iconfinder.com/data/icons/men-avatars/33/man_19-512.png" width="100" height="100" /><img src="https://cdn2.iconfinder.com/data/icons/business-set-3-5/256/Business_Woman-01-512.png" width="100" height="100" /><br /> {{patient.firstname}} {{patient.gender}} {{patient.lastname}}</td>
-        <td style="text-align: left; width: 12.0858%;">{{patient.age}}</td>
-        <td style="text-align: left; width: 9%;">
-        <p>{{patient.dateOfBirth}}</p>
-        </td>
-        <td style="text-align: center; width: 26%;">
-        <p>{{patient.contactNo}}</p>
-        <p>{{patient.altContactNo}}</p>
-        <p>{{patient.email}}</p>
-        </td>
-        <td style="text-align: center; width: 26%;"><p>{{patient.address1}}</p>
-        <p>{{patient.address2}}</p>
-        <p>{{patient.city}}</p>
-        <p>{{patient.state}}</p>
-         {{patient.zipcode}} </td>
-         <td style="text-align: left; width: 5%;"><a [routerLink]="['/edit/patient',patient.id]" class="text_red" *ngIf="isEditable()">Edit</a></td>
-         <td style="text-align: left; width: 5%;"><button class="btn btn-primary" (click)="approve(patient.username)">Approve</button></td>
-         <td style="text-align: left; width: 5%;"><button class="btn btn-primary" (click)="disApprove(patient.username)">Disapprove</button></td> 
+
+<div class="row justify-content-center mt-5">
+        <div class="col-12 col-md-6 col-lg-4 mt-5" *ngFor="let patient of patients">
+                <div class="card">
+                        <img src="https://image.flaticon.com/icons/png/512/17/17797.png" height="200px" width="200px"
+                                class="center">
+                        <div class="card-body">
+                                <div class="row">
+                                        <div class="col-4">
+                                                <b>
+                                                        <h6>Name :</h6>
+                                                </b></div>
+
+                                        <div class="col-6 ">
+                                                {{patient.firstname}} {{patient.lastname}}
+                                        </div>
+                                        <div class="col-2 text-right">
+
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-4">
+                                                <b>
+                                                        <h6>Age :</h6>
+                                                </b></div>
+
+                                        <div class="col-4">
+                                                {{patient.age}}
+                                        </div>
+                                        <div class="col-4 text-right"><button class="btn" (click)="allDetails()"><i
+                                                                class="material-icons">
+                                                                arrow_drop_down
+                                                        </i></button></div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-6"></div>
+                                        <div class="col-6 text-right"></div>
+                                </div>
+
+                                <div *ngIf="showDetails">
+                                        <div class="row">
+                                                <div class="col-4"><b>
+                                                                <h6>Email :</h6>
+                                                        </b></div>
+                                                <div class="col-8">{{patient.email}}</div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-4"><b>
+                                                                <h6>Conatct No :</h6>
+                                                        </b></div>
+                                                <div class="col-8">{{patient.contactNo}}</div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-4"><b>
+                                                                <h6> Alt Conatct No :</h6>
+                                                        </b></div>
+                                                <div class="col-8">{{patient.altContactNo}}</div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-4"><b>
+                                                                <h6>Address</h6>
+                                                        </b></div>
+                                                <div class="col-8">{{patient.address1}},{{patient.address2}}</div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-4"></div>
+                                                <div class="col-8">{{patient.city}},{{patient.state}},{{patient.zipcode}}
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-12">
+
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-4">
+                                                <a [routerLink]="['/edit/patient',patient.id]" class="text_white"><button
+                                                                class="btn btn-primary">Edit</button></a>
+                                        </div>
+                                        <div class="col-4">
+                                                <button class="btn btn-success" data-toggle="modal"
+                                                        data-target="#approveModal">Approve</button>
+                                        </div>
+                                        <div class="col-4">
+                                                <button class="btn btn-danger" data-toggle="modal"
+                                                data-target="#disApproveModal">Disapprove</button>
+                                        </div>
+                                </div>
+
+
+                                <!-- The Modal -->
+                              
+
+
+
+
+                        </div>
+                </div>
+
         
-        </tr>
-     </tbody>
-     </table>
+
+
+
+        <div class="modal" id="approveModal">
+                        <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                                <h4 class="modal-title">Approve </h4>
+                                                <button type="button" class="close"
+                                                        data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                                Are you sure you want Approve this Agent.
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger"
+                                                        data-dismiss="modal">Close</button>
+                                        </div>
+
+                                </div>
+                        </div>
+                </div>
+
+                <div class="modal" id="disApproveModal">
+                                <div class="modal-dialog">
+                                        <div class="modal-content">
+        
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                        <h4 class="modal-title">DisApprove </h4>
+                                                        <button type="button" class="close"
+                                                                data-dismiss="modal">&times;</button>
+                                                </div>
+        
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                        Are you sure you want DisApprove this Agent.
+                                                </div>
+        
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"
+                                                                data-dismiss="modal">Close</button>
+                                                </div>
+        
+                                        </div>
+                                </div>
+                        </div>
+
+
+
+        </div>
+</div>

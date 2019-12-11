@@ -17,6 +17,7 @@ export class AuthService {
     userAuthenticated: User;
     authSource: string = '';
     accessToken: string;
+    username:string;
 
     constructor(private userService: UserService, private httpService: HttpClient) {
 

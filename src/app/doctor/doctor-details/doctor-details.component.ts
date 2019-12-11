@@ -14,6 +14,7 @@ export class DoctorDetailsComponent implements OnInit {
   doctors:Doctor[];
   tempDoctor:Doctor[];
   isMale:boolean;
+  showDetails:boolean=false;
   constructor(private doctorService:DoctorService,private authService:AuthService) { }
 
   ngOnInit() {
@@ -28,6 +29,11 @@ export class DoctorDetailsComponent implements OnInit {
 
   isEditable(){
     return this.authService.isAdmin
+  }
+
+  allDetails(){
+    return this.showDetails=this.showDetails;
+    
   }
 
 }

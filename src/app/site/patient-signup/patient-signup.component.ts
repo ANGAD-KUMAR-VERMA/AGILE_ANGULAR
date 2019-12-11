@@ -88,7 +88,7 @@ export class PatientSignupComponent implements OnInit {
     }
   
     userTaken(){
-      let username = this.signupForm.get('username').value
+      let username = this.patientRegisterForm.get('username').value
       if(username.length==0){
         return;
       }

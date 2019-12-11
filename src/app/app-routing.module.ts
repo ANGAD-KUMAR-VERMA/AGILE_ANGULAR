@@ -18,6 +18,7 @@ import { NotFoundComponent } from './site/not-found/not-found.component';
 
 
 
+
 const routes: Routes = [
   { path: '', redirectTo: 'menu', pathMatch: 'full' },
   {path:'login', component:LoginComponent},

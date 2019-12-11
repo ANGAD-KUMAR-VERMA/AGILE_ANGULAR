@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
 
   isLoginValid = true;
+  username:string;
   role:string;
   authSource: string;
   isUserAuthenticated:boolean=true;
@@ -38,16 +39,19 @@ export class LoginComponent implements OnInit {
       this.authService.logIn(username, password).subscribe((data) => {
         this.authService.accessToken = data['token'];
         this.role=data['role'];
+        this.username=data['username'];
+        this.authService.username=this.username;
+        console.log(this.username)
         console.log("ROle "+this.role);
         this.authService.isAdmin = data['role'] == 'ROLE_ADMIN' ? true : false;
         this.authService.isDoctor = data['role'] == 'ROLE_DOCTOR' ? true : false;
         this.authService.isAgent = data['role'] == 'ROLE_AGENT' ? true : false;
         this.authService.loggedIn = true;
         if (this.authService.isAdmin) {
-            this.authService.userAuthenticated = { username: username, firstname: 'Angad', lastname: 'Verma',  accessToken: this.authService.accessToken,status:true,password:"pwd" }
+            this.authService.userAuthenticated = { username: username,  accessToken: this.authService.accessToken,status:true,password:"pwd" }
         }
         else {
-            this.authService.userAuthenticated = { username: username, firstname: 'Chitransh', lastname: 'Customer', accessToken: this.authService.accessToken,status:true,password:"pwd" }
+            this.authService.userAuthenticated = { username: username, accessToken: this.authService.accessToken,status:true,password:"pwd" }
         }
         this.router.navigate(['/menu']);
     },(error)=>{

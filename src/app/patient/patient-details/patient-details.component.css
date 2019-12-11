@@ -2,12 +2,17 @@
     color: red;
 }
 
-table,td,th{
-    border: 1px solid black;
+.title{
+    font-size: 50px;
+    background-color: red;
+    color: white;
+    
 }
 
-.jumbotron {
-    background-image: url("https://st2.depositphotos.com/5266903/8766/v/950/depositphotos_87663518-stock-illustration-search-patient-icon.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }

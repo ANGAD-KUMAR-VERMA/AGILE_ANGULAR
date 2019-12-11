@@ -1,30 +1,187 @@
-
-<table class="table table-bordered" border="0" width="90%" cellspacing="2" cellpadding="8" align="center">
-        <tbody>
-        <tr>
-        <th class="title" style="text-align: left; width: 98%;" colspan="5" align="center">Doctors</th>
-        </tr>
-        <tr>
-        <th class="title" style="text-align: left; width: 14.9142%;">Name</th>
-        <th class="title" style="text-align: left; width: 12.0858%;">Degree</th>
-        <th class="title" style="text-align: left; width: 9%;">Hospital Name</th>
-        <th class="title" style="text-align: left; width: 26%;">Contact No. / E-mail</th>
-        <th class="title" style="text-align: left; width: 26%;">Specialization / Area of Interest</th>
-        <th class="title" style="text-align: left; width: 10%;">Edit</th>
-        </tr>
-        <tr *ngFor="let doctor of doctors">
-        <td style="text-align: left; width: 14.9142%;"><img src="https://previews.123rf.com/images/tuktukdesign/tuktukdesign1704/tuktukdesign170400032/76258396-female-doctor-icon-physician-person-with-stethoscope-and-cross-profile-avatar-in-glyph-pictogram-vec.jpg" width="100" height="100" /><br /> {{doctor.firstname}} {{doctor.lastname}}</td>
-        <td style="text-align: left; width: 12.0858%;">{{doctor.degree}}</td>
-        <td style="text-align: left; width: 9%;">
-        <p>{{doctor.hospitalname}}</p>
-        </td>
-        <td style="text-align: left; width: 26%;">
-        <p>{{doctor.contactNo}}</p>
-        <p>{{doctor.altContactNo}} </p>
-        {{doctor.email}}
-            </td>
-        <td style="text-align: left; width: 36%;">{{doctor.speciality}}</td>
-        <td ><a [routerLink]="['/edit/doctor',doctor.id]" class="text_red" *ngIf="isEditable()"><button class="btn btn-danger">Edit</button></a></td>
-        </tr>
-     </tbody>
-     </table>
+<div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-4"></div>
+            <div class="col-4 title text-center">Doctors List</div>
+            <div class="col-4"></div>
+        </div>  
+    </div>
+    
+    
+    
+    <div class="row justify-content-center mt-5">
+            <div class="col-12 col-md-6 col-lg-4 mt-5" *ngFor="let doctor of doctors">
+                    <div class="card">
+                            <img src="https://image.flaticon.com/icons/png/512/17/17797.png" height="200px" width="200px"
+                                    class="center">
+                            <div class="card-body">
+                                    <div class="row">
+                                            <div class="col-4">
+                                                    <b>
+                                                            <h6>Name :</h6>
+                                                    </b></div>
+    
+                                            <div class="col-6 ">
+                                                    {{doctor.firstname}} {{doctor.lastname}}
+                                            </div>
+                                            <div class="col-2 text-right">
+    
+                                            </div>
+                                    </div>
+    
+                                    <div class="row">
+                                            <div class="col-4">
+                                                    <b>
+                                                            <h6>Age :</h6>
+                                                    </b></div>
+    
+                                            <div class="col-4">
+                                                    {{doctor.age}}
+                                            </div>
+                                            <div class="col-4 text-right"><button class="btn" (click)="allDetails()"><i
+                                                                    class="material-icons">
+                                                                    arrow_drop_down
+                                                            </i></button></div>
+                                    </div>
+    
+                                    <div class="row">
+                                            <div class="col-6"></div>
+                                            <div class="col-6 text-right"></div>
+                                    </div>
+    
+                                    <div *ngIf="showDetails">
+                                            <div class="row">
+                                                    <div class="col-4"><b>
+                                                                    <h6>Email :</h6>
+                                                            </b></div>
+                                                    <div class="col-8">{{doctor.email}}</div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-4"><b>
+                                                                    <h6>Conatct No :</h6>
+                                                            </b></div>
+                                                    <div class="col-8">{{doctor.contactNo}}</div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-4"><b>
+                                                                    <h6> Alt Conatct No :</h6>
+                                                            </b></div>
+                                                    <div class="col-8">{{doctor.altContactNo}}</div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-4"><b>
+                                                                    <h6>Address</h6>
+                                                            </b></div>
+                                                    <div class="col-8">{{doctor.address1}},{{doctor.address2}}</div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-4"></div>
+                                                    <div class="col-8">{{doctor.city}},{{doctor.state}},{{doctor.zipcode}}
+                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4"><b><h6>Degree</h6></b></div>
+                                                <div class="col-8">{{doctor.degree}}</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4"><b><h6>Speciality</h6></b></div>
+                                                <div class="col-8">{{doctor.speciality}}</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4"><b><h6>Work Hours</h6></b></div>
+                                                <div class="col-8">{{doctor.workhours}}</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4"><b><h6>Hospital Name</h6></b></div>
+                                                <div class="col-8">{{doctor.hospitalname}}</div>
+                                            </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-12">
+    
+                                            </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-4">
+                                                    <a [routerLink]="['/edit/doctor',doctor.id]" class="text_white"><button
+                                                                    class="btn btn-primary">Edit</button></a>
+                                            </div>
+                                            <div class="col-4">
+                                                    <button class="btn btn-success" data-toggle="modal"
+                                                            data-target="#approveModal">Approve</button>
+                                            </div>
+                                            <div class="col-4">
+                                                    <button class="btn btn-danger" data-toggle="modal"
+                                                    data-target="#disApproveModal">Disapprove</button>
+                                            </div>
+                                    </div>
+    
+    
+                                    <!-- The Modal -->
+                                  
+    
+    
+    
+    
+                            </div>
+                    </div>
+    
+            
+    
+    
+    
+            <div class="modal" id="approveModal">
+                            <div class="modal-dialog">
+                                    <div class="modal-content">
+    
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                    <h4 class="modal-title">Approve </h4>
+                                                    <button type="button" class="close"
+                                                            data-dismiss="modal">&times;</button>
+                                            </div>
+    
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                    Are you sure you want Approve this Agent.
+                                            </div>
+    
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger"
+                                                            data-dismiss="modal">Close</button>
+                                            </div>
+    
+                                    </div>
+                            </div>
+                    </div>
+    
+                    <div class="modal" id="disApproveModal">
+                                    <div class="modal-dialog">
+                                            <div class="modal-content">
+            
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header">
+                                                            <h4 class="modal-title">DisApprove </h4>
+                                                            <button type="button" class="close"
+                                                                    data-dismiss="modal">&times;</button>
+                                                    </div>
+            
+                                                    <!-- Modal body -->
+                                                    <div class="modal-body">
+                                                            Are you sure you want DisApprove this Agent.
+                                                    </div>
+            
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                    data-dismiss="modal">Close</button>
+                                                    </div>
+            
+                                            </div>
+                                    </div>
+                            </div>
+    
+    
+    
+            </div>
+    </div>

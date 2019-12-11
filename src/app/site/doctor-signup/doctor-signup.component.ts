@@ -99,7 +99,7 @@ export class DoctorSignupComponent implements OnInit {
     }
   
     userTaken(){
-      let username = this.signupForm.get('username').value
+      let username = this.doctorRegisterForm.get('username').value
       if(username.length==0){
         return;
       }

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md">
-    <a href="#" class="navbar-brand"><i class="material-icons dicon">
+    <a routerLink="menu" class="navbar-brand"><i class="material-icons dicon">
             enhanced_encryption</i>DocCare</a>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navcontent">
         <span class="navbar-toggler-icon"></span>
@@ -26,7 +26,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" *ngIf="isLoggedIn()"><i class="material-icons">person</i>
-
+                         {{getUser()}}
                 </a>
             </li>
             <li class="nav-item">

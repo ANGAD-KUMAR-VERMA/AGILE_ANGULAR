@@ -13,6 +13,7 @@ export class AgentDetailsComponent implements OnInit {
   agents:Agent[];
   tempAgent:Agent[];
   isMale:boolean;
+  showDetails:boolean=false;
   constructor(private agentService:AgentService) { }
 
   ngOnInit() {
@@ -23,6 +24,10 @@ export class AgentDetailsComponent implements OnInit {
       console.log(this.agents);
 
   })
+  }
+
+  allDetails(){
+    return this.showDetails=!this.showDetails;
   }
 
 }
