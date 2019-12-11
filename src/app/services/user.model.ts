@@ -6,8 +6,6 @@ import { Role } from '../model/role.model';
 
 export interface User {
     username: string;
-    firstname: string;
-    lastname:string;
     password: string;
     status?: boolean;
     roleList?:Role[],

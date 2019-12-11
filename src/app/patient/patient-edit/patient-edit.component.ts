@@ -65,6 +65,7 @@ export class PatientEditComponent implements OnInit {
             zipcode:patient.zipcode
 
           });
+          console.log("addess"+patient.address2);
         } else {
           this.router.navigate(['']);
         }

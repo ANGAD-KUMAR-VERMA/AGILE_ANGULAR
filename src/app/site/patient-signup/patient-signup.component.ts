@@ -51,9 +51,8 @@ export class PatientSignupComponent implements OnInit {
   
     user={
       username: this.patientRegisterForm.get('username').value,
-      firstname: this.patientRegisterForm.get('firstname').value,
-      lastname: this.patientRegisterForm.get('lastname').value,
       password: this.patientRegisterForm.get('password').value,
+      status:false,
       patient:{
         username: this.patientRegisterForm.get('username').value,
         firstname: this.patientRegisterForm.get('firstname').value,

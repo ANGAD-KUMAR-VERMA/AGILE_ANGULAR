@@ -69,6 +69,7 @@ export class DoctorEditComponent implements OnInit {
             hospitalname:doctor.hospitalname
 
           });
+          console.log("Gender "+doctor.gender)
         } else {
           this.router.navigate(['']);
         }

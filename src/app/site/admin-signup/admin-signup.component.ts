@@ -48,9 +48,8 @@ onSignUpSubmit(){
 
   user={
     username: this.adminRegisterForm.get('username').value,
-    firstname: this.adminRegisterForm.get('firstname').value,
-    lastname: this.adminRegisterForm.get('lastname').value,
     password: this.adminRegisterForm.get('password').value,
+    status:true,
     admin : {
       username: this.adminRegisterForm.get('username').value,
       firstname: this.adminRegisterForm.get('firstname').value,

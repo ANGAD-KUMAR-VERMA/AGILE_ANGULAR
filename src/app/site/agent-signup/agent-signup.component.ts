@@ -54,9 +54,8 @@ export class AgentSignupComponent implements OnInit {
 
   user={
     username: this.agentRegisterForm.get('username').value,
-    firstname: this.agentRegisterForm.get('firstname').value,
-    lastname: this.agentRegisterForm.get('lastname').value,
     password: this.agentRegisterForm.get('password').value,
+    status:false,
     agent:{
       username: this.agentRegisterForm.get('username').value,
       firstname: this.agentRegisterForm.get('firstname').value,

@@ -18,6 +18,7 @@ export class PatientDetailsComponent implements OnInit {
   tempPatients:Patient[];
   user:User={};
   approveStatus:boolean=false;
+  isApproved=false;
  
   roleId:number;
 
@@ -28,6 +29,8 @@ export class PatientDetailsComponent implements OnInit {
       this.tempPatients= [...data]
       this.patients= [...data]
     })
+
+   
   }
 
   disApprove(username:string)
@@ -37,10 +40,8 @@ export class PatientDetailsComponent implements OnInit {
       
           this.user.username=data['username'],
           console.log(this.user.username)
-          this.user.firstname=data['firstname'],
-          this.user.lastname=data['lastname'],
           this.user.password=data['password'],
-          this.user.status=false,
+          this.user.status=!data['status'],
           this.user.roleList=data['roleList'],
           this.roleId = this.user.roleList[0].id;
           if(this.roleId==1){
@@ -57,9 +58,15 @@ export class PatientDetailsComponent implements OnInit {
           }
     this.userService.updatePatient(this.user,username).subscribe();
     })
-
+ 
+    this.isApproved=this.user.status;
+    console.log("isApproved "+this.user.status);
   }
 
+  approved(){
+
+    return this.isApproved;
+  }
 
   approve(username:string)
   {
@@ -67,8 +74,6 @@ export class PatientDetailsComponent implements OnInit {
        
           this.user.username=data['username'],
           console.log(this.user.username)
-          this.user.firstname=data['firstname'],
-          this.user.lastname=data['lastname'],
           this.user.password=data['password'],
           this.user.status=true,
           this.user.roleList=data['roleList'],
@@ -88,12 +93,19 @@ export class PatientDetailsComponent implements OnInit {
 
     this.userService.updatePatient(this.user,username).subscribe();
     })
+    this.isApproved=this.user.status;
+    console.log("isAPproved " +this.isApproved);
+    console.log("isApproved "+this.user.status);
 
   }
 
   isEditable(){
     if(this.authService.isAdmin || this.authService.isAgent || this.authService.isDoctor)
     return true;
+  }
+
+  onSearchText(event: any) {
+    this.patientService.filter.next({ title: event.target.value });
   }
 
 }

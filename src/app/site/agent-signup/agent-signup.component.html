@@ -15,8 +15,8 @@
                                     <label for="username">UserName</label>
                                     <input type="text" name="username" formControlName="username" class="form-control">
                                     <span class="validation-error" *ngIf="username.touched && username.hasError('required')">User name cannot be empty</span>
-                                    <span class="validation-error" *ngIf="username.hasError('maxlength')">User cannot exceed 50 characters.</span>
-                                    <span class="validation-error" *ngIf="username.hasError('pattern')">Special Characters are not allowed</span>
+                                   <div> <span class="validation-error" *ngIf="username.hasError('maxlength')">User cannot exceed 50 characters.</span></div>
+                                    <div><span class="validation-error" *ngIf="username.hasError('pattern')">Special Characters are not allowed</span></div>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4">
@@ -24,8 +24,8 @@
                                     <label for="firstname">First Name</label>
                                     <input type="text" name="firstname" formControlName="firstname" class="form-control">
                                     <span class="validation-error" *ngIf="firstname.touched && firstname.hasError('required')">First name cannot be empty</span>
-                                    <span class="validation-error" *ngIf="firstname.hasError('maxlength')">Lastname cannot exceed 50 characters.</span>
-                                    <span class="validation-error" *ngIf="firstname.hasError('pattern')">Special Characters are not allowed</span>
+                                  <div>  <span class="validation-error" *ngIf="firstname.hasError('maxlength')">Lastname cannot exceed 50 characters.</span></div>
+                                   <div> <span class="validation-error" *ngIf="firstname.hasError('pattern')">Special Characters are not allowed</span></div>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4">
@@ -33,8 +33,8 @@
                                     <label for="lastname">Last Name</label>
                                     <input type="text" name="firstname" formControlName="lastname" class="form-control">
                                     <span class="validation-error" *ngIf="lastname.touched && lastname.hasError('required')">Last name cannot be empty</span>
-                                    <span class="validation-error" *ngIf="lastname.hasError('maxlength')">Lastname cannot exceed 50 characters.</span>
-                                    <span class="validation-error" *ngIf="lastname.hasError('pattern')">Special Characters are not allowed</span>
+                                    <div><span class="validation-error" *ngIf="lastname.hasError('maxlength')">Lastname cannot exceed 50 characters.</span></div>
+                                   <div> <span class="validation-error" *ngIf="lastname.hasError('pattern')">Special Characters are not allowed</span></div>
                                 </div>
                             </div>
     
@@ -43,8 +43,8 @@
                                     <label for="age">Age</label>
                                     <input type="text" name="age" formControlName="age" class="form-control">
                                     <span class="validation-error" *ngIf="age.touched && age.hasError('required')">Age  cannot be empty</span>
-                                    <span class="validation-error" *ngIf="age.hasError('maxlength')">Age cannot exceed 2 characters.</span>
-                                    <span class="validation-error" *ngIf="age.hasError('pattern')">Enter only Numeric Values</span>
+                                   <div> <span class="validation-error" *ngIf="age.hasError('maxlength')">Age cannot exceed 2 characters.</span></div>
+                                    <div><span class="validation-error" *ngIf="age.hasError('pattern')">Enter only Numeric Values</span></div>
                                 </div>
                             </div>
     
@@ -75,9 +75,9 @@
                                     <input type="text" formControlName="contactNo" class="form-control">
                                    
                                     <span class="validation-error" *ngIf="contactNo.touched && contactNo.hasError('required')">COntact No  cannot be empty</span>
-                                    <span class="validation-error" *ngIf="contactNo.hasError('maxlength')">Contact No cannot exceed 10 characters.</span>
-                                    <span class="validation-error" *ngIf="contactNo.hasError('minlength')">Contact should be of 10 characters.</span>
-                                    <span class="validation-error" *ngIf="contactNo.hasError('pattern')">Only numbers can be entered</span>
+                                  <div>  <span class="validation-error" *ngIf="contactNo.hasError('maxlength')  && contactNo.touched">Contact No cannot exceed 10 characters.</span></div>
+                                    <div><span class="validation-error" *ngIf="contactNo.hasError('minlength')  && contactNo.touched">Contact should be of 10 characters.</span></div>
+                                   <div> <span class="validation-error" *ngIf="contactNo.hasError('pattern')">Only numbers can be entered</span></div>
                                 </div>
     
                             </div>
@@ -88,8 +88,8 @@
                                     <input type="text" formControlName="altContactNo" class="form-control"
                                         name="altContactNo" id="altContactNo">
                                         <span class="validation-error" *ngIf="altContactNo.hasError('pattern')">Only numbers can be entered</span>
-                                        <span class="validation-error" *ngIf="altContactNo.hasError('maxlength')">Contact No cannot exceed 10 characters.</span>
-                                        <span class="validation-error" *ngIf="altContactNo.hasError('minlength')">Contact should be of 10 characters.</span>
+                                       <div> <span class="validation-error" *ngIf="altContactNo.hasError('maxlength')  && altContactNo.touched">Contact No cannot exceed 10 characters.</span></div>
+                                        <div><span class="validation-error" *ngIf="altContactNo.hasError('minlength')  && altContactNo.touched">Contact should be of 10 characters.</span></div>
                                     
                                 </div>
                             </div>
@@ -100,8 +100,8 @@
                                     <label for="email">Email</label>
                                     <input type="text" formControlName="email" name="email" id="email" class="form-control">
                                     <span class="validation-error" *ngIf="email.touched && email.hasError('required')">Email  cannot be empty</span>
-                                    <span class="validation-error" *ngIf="email.hasError('maxlength')">Age cannot exceed 50 characters.</span>
-                                    <span class="validation-error" *ngIf="email.hasError('email')">Not in correct Format</span>
+                                   <div> <span class="validation-error" *ngIf="email.hasError('maxlength')">Age cannot exceed 50 characters.</span></div>
+                                   <div> <span class="validation-error" *ngIf="email.hasError('email')">Not in correct Format</span></div>
                                 </div>
                             </div>
     
@@ -111,7 +111,7 @@
                                     <input type="password" formControlName="password" name="password" id="password"
                                         class="form-control">
                                         <span class="validation-error" *ngIf="password.touched && password.hasError('required')">password is mandatory</span>
-                                        <span class="validation-error" *ngIf="password.hasError('maxlength')">Password cannot exceed 15 characters.</span>
+                                      <div>  <span class="validation-error" *ngIf="password.hasError('maxlength')">Password cannot exceed 15 characters.</span></div>
                                 </div>
                             </div>
     
@@ -121,7 +121,7 @@
                                     <input type="text" class="form-control" name="address1" id="address1"
                                         formControlName="address1">
                                         <span class="validation-error" *ngIf="address1.touched && address1.hasError('required')">Address1  cannot be empty</span>
-                                        <span class="validation-error" *ngIf="address1.hasError('maxlength')">Address1 cannot exceed 100 characters.</span>
+                                       <div> <span class="validation-error" *ngIf="address1.hasError('maxlength')">Address1 cannot exceed 100 characters.</span></div>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4">
@@ -129,7 +129,7 @@
                                 <div class="form-group">
                                     <label for="address2">Address 2</label>
                                     <input type="textarea" class="form-control" name="address2" id="address2"
-                                        formControlname="address2">
+                                        formControlName="address2">
                                         <span class="validation-error" *ngIf="address2.hasError('maxlength')">Address2 cannot exceed 100 characters.</span>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
                                     <label for="city">City</label>
                                     <input type="text" class="form-control" name="city" id="city" formControlName="city">
                                     <span class="validation-error" *ngIf="city.touched && city.hasError('required')">City name cannot be empty</span>
-                                    <span class="validation-error" *ngIf="city.hasError('maxlength')">City name cannot exceed 50 characters.</span>
+                                   <div> <span class="validation-error" *ngIf="city.hasError('maxlength')">City name cannot exceed 50 characters.</span></div>
                                 </div>
                             </div>
     
@@ -148,7 +148,7 @@
                                     <label for="state">State</label>
                                     <input type="text" class="form-control" name="state" id="state" formControlName="state">
                                     <span class="validation-error" *ngIf="state.touched && state.hasError('required')">State name cannot be empty</span>
-                                    <span class="validation-error" *ngIf="state.hasError('maxlength')">State name cannot exceed 50 characters.</span>
+                                 <div>   <span class="validation-error" *ngIf="state.hasError('maxlength')">State name cannot exceed 50 characters.</span></div>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4">
@@ -157,8 +157,8 @@
                                     <input type="text" class="form-control" name="zipcode" id="zipcode"
                                         formControlName="zipcode">
                                         <span class="validation-error" *ngIf="zipcode.touched && zipcode.hasError('required')">Zipcode  cannot be empty</span>
-                                        <span class="validation-error" *ngIf="zipcode.hasError('maxlength')">Zipcode cannot exceed 10 characters.</span>
-                                        <span class="validation-error" *ngIf="zipcode.hasError('pattern')">ZipCode can only accept Numbers</span>
+                                       <div> <span class="validation-error" *ngIf="zipcode.hasError('maxlength')">Zipcode cannot exceed 10 characters.</span></div>
+                                        <div><span class="validation-error" *ngIf="zipcode.hasError('pattern')">ZipCode can only accept Numbers</span></div>
                                 </div>
                             </div>
     
