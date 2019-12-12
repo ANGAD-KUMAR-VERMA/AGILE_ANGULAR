@@ -15,6 +15,7 @@ import { PatientDetailsComponent } from './patient/patient-details/patient-detai
 import { DoctorEditComponent } from './doctor/doctor-edit/doctor-edit.component';
 import { PatientEditComponent } from './patient/patient-edit/patient-edit.component';
 import { NotFoundComponent } from './site/not-found/not-found.component';
+import { SignupComponent } from './site/signup/signup.component';
 
 
 
@@ -22,7 +23,7 @@ import { NotFoundComponent } from './site/not-found/not-found.component';
 const routes: Routes = [
   { path: '', redirectTo: 'menu', pathMatch: 'full' },
   {path:'login', component:LoginComponent},
-  {path:'signup', component:SignupOptionComponent},
+  {path:'signup', component:SignupComponent},
   {path:'signup/admin', component:AdminSignupComponent},
   {path:'signup/patient', component:PatientSignupComponent},
   {path:'signup/agent', component:AgentSignupComponent},

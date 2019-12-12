@@ -6,7 +6,7 @@ export interface Doctor{
     lastname:string;
     password:string;
     age:string;
-    gender:boolean;
+    gender:string;
     dateOfBirth:Date;
     contactNo:string;
     altContactNo:string;
@@ -20,4 +20,5 @@ export interface Doctor{
     speciality:string;
     workhours:string;
     hospitalname:string;
+    status?:boolean;
 }

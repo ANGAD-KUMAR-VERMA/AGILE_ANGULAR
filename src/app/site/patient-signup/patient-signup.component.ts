@@ -58,7 +58,7 @@ export class PatientSignupComponent implements OnInit {
         firstname: this.patientRegisterForm.get('firstname').value,
         lastname: this.patientRegisterForm.get('lastname').value,
         age:this.patientRegisterForm.get('age').value,
-        gender:this.patientRegisterForm.get('gender').value,
+        gender:this.patientRegisterForm.get('gender').value===true?"male":"female",
         dateOfBirth:this.patientRegisterForm.get('dateOfBirth').value,
         contactNo:this.patientRegisterForm.get('contactNo').value,
         altContactNo:this.patientRegisterForm.get('altContactNo').value,
@@ -68,7 +68,8 @@ export class PatientSignupComponent implements OnInit {
         address2:this.patientRegisterForm.get('address2').value,
         city:this.patientRegisterForm.get('city').value,
         state:this.patientRegisterForm.get('state').value,
-        zipcode:this.patientRegisterForm.get('zipcode').value
+        zipcode:this.patientRegisterForm.get('zipcode').value,
+        status:false
     
       }  
     }

@@ -25,6 +25,8 @@ import { PatientDetailsComponent } from './patient/patient-details/patient-detai
 import { NotFoundComponent } from './site/not-found/not-found.component';
 import { DetailsComponent } from './details/details.component';
 
+import { SignupComponent } from './site/signup/signup.component';
+import { AppointmentComponent } from './appointment/appointment.component';
 
 
 @NgModule({
@@ -49,6 +51,8 @@ import { DetailsComponent } from './details/details.component';
     PatientDetailsComponent,
     NotFoundComponent,
     DetailsComponent,
+    SignupComponent,
+    AppointmentComponent,
   
   ],
   imports: [
